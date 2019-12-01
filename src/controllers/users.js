@@ -54,7 +54,7 @@ export const createNewUser = [
           salt,
         };
         {
-          let result = await createUser(user);
+          let result = await createUser(client, user);
           const { username, _id, email } = result.ops[0];
           res.status(200).json({
             count: result.insertedCount,
@@ -75,7 +75,7 @@ export const createNewUser = [
 
 export const getUser = async (req, res, next) => {
   try {
-    let user = await findUserById(req.params.userId);
+    let user = await findUserById(client, req.params.userId);
 
     if (user) {
       res.status(200).json({

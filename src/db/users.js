@@ -1,7 +1,7 @@
-import { client } from './connection';
+// import { client } from './connection';
 import { ObjectID } from 'mongodb';
 
-export async function createUser(doc) {
+export async function createUser(client, doc) {
   try {
     const db = client.db('xseed');
     const collection = db.collection('users');
@@ -15,7 +15,7 @@ export async function createUser(doc) {
   }
 }
 
-export async function findUserById(id) {
+export async function findUserById(client, id) {
   try {
     const db = client.db('xseed');
     const collection = db.collection('users');
@@ -29,7 +29,7 @@ export async function findUserById(id) {
   }
 }
 
-export async function findUserByEmail(email) {
+export async function findUserByEmail(client, email) {
   try {
     const db = client.db('xseed');
     const collection = db.collection('users');
@@ -42,7 +42,3 @@ export async function findUserByEmail(email) {
     throw err;
   }
 }
-
-export async function updateUser() {}
-
-export async function deleteUser() {}

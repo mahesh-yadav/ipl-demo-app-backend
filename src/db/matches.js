@@ -1,6 +1,9 @@
-import { client } from './connection';
-
-export async function findMatches(filterDoc = {}, skip = 0, limit = 10) {
+export async function findMatches(
+  client,
+  filterDoc = {},
+  skip = 0,
+  limit = 10
+) {
   try {
     const db = client.db('xseed');
     const collection = db.collection('matches');
@@ -35,7 +38,7 @@ export async function findMatches(filterDoc = {}, skip = 0, limit = 10) {
   }
 }
 
-export async function findOneMatch(id) {
+export async function findOneMatch(client, id) {
   try {
     const db = client.db('xseed');
     const collection = db.collection('matches');

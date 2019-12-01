@@ -9,6 +9,7 @@ import { findUserByEmail } from '../db/users';
 import { authenticate } from '../helpers/users';
 import { SECRET_KEY } from '../config';
 import { body, validationResult } from 'express-validator';
+import { client } from '../db/connection';
 
 export const signin = [
   body('email')
@@ -32,7 +33,7 @@ export const signin = [
         return next(error);
       }
 
-      let user = await findUserByEmail(req.body.email);
+      let user = await findUserByEmail(client, req.body.email);
       if (user) {
         if (!authenticate(req.body.password, user.hashed_password, user.salt)) {
           return next(new AuthorizationError('Password is incorrect', 401));

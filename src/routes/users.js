@@ -8,8 +8,4 @@ userRouter.post('/', createNewUser);
 
 userRouter.get('/:userId', requireSignIn, hasAuthorization, getUser);
 
-userRouter.put('/:userId', (req, res, next) => {});
-
-userRouter.delete('/:userId', (req, res, next) => {});
-
 export default userRouter;

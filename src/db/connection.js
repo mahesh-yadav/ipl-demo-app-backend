@@ -1,6 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-const dbUrl = 'mongodb://localhost:30000';
+const dbUrl = process.env.MONGO_URI || 'mongodb://localhost:27017';
 const PORT = process.env.PORT || 4000;
 
 export const client = new MongoClient(dbUrl, {

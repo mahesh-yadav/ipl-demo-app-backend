@@ -1,5 +1,6 @@
 import { findMatches, findOneMatch } from '../db/matches';
 import { DatabaseError } from '../helpers/errors';
+import { client } from '../db/connection';
 
 export const getMatches = async (req, res, next) => {
   try {
@@ -18,7 +19,7 @@ export const getMatches = async (req, res, next) => {
       filterDoc.season = parseInt(filter);
     }
 
-    const { docs, count } = await findMatches(filterDoc, skip, limit);
+    const { docs, count } = await findMatches(client, filterDoc, skip, limit);
     res.status(200).json({
       docs,
       count,
@@ -33,7 +34,7 @@ export const getMatches = async (req, res, next) => {
 
 export const getMatch = async (req, res, next) => {
   try {
-    let doc = await findOneMatch(parseInt(req.params.matchId));
+    let doc = await findOneMatch(client, parseInt(req.params.matchId));
     res.status(200).json(doc);
   } catch (err) {
     console.log(err);
