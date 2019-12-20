@@ -1,0 +1,9 @@
+# Loading csv file into mongoDB
+mongoimport --port 30000 --db=xseed --collection=matches --type=csv --headerline --file=matches.csv
+
+
+# Starting mongod daemon
+mongod --dbpath=data --port=30000
+
+# using mongo shell
+mongo --port 30000
